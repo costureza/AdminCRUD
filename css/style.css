@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Gruppo&display=swap');
+:root{
+    --green:#27ae60;
+    --black:#333;
+    --white:#fff;
+    --bg-color:#eee;
+    --box-shadown: 0 .5rem 1rem rgba(0,0,0,.1);
+    --border: .1rem solid var(var(--black));
+}
+*{
+    font-family: "Gruppo", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    text-decoration: none;
+}
