@@ -1,3 +1,7 @@
+<?php
+    require_once 'config.php';
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -10,7 +14,14 @@
 <body>
     <div class="container">
         <div class="admin-product-form-container">
-            
+            <form action="<?php $_SERVER['PHP_SELF'];?>" method="post" enctype="multipart/form-data">
+                <h3>Adcionar novo produto</h3>
+                <input type="text" placeholder="Adicione o nome do produto" name="product_name" class="box">
+                <input type="number" placeholder="Adicione o preço do produto" name="product_price" class="box">
+                <input type="file" accept="iamge/png, image/jpeg, image/jpg"  name="product_image" class="box">
+                <input type="submit" value="Adicionar" class="btn" name="add_product">
+
+            </form>
         </div>
     </div>
 </body>
