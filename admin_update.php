@@ -43,7 +43,11 @@ if (isset($_POST['update_product'])) {
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <!-- ... (cabeçalho mantido igual) ... -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aministrador</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <?php
@@ -65,7 +69,7 @@ if (isset($_POST['update_product'])) {
                 <input type="file" accept="image/png, image/jpeg, image/jpg" name="product_image" class="box">
                 <p>Imagem atual: <?= $row['image'] ?></p>
                 <input type="submit" value="Atualizar" class="btn" name="update_product">
-                <a href="admin_page.php" class="btn"><i class="fa-solid fa-circle-arrow-left"></i> Voltar</a>
+                <a href="/admin_page.php" class="btn">Voltar</a>
             </form>
         </div>
     </div>

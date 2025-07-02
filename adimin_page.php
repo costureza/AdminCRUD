@@ -30,7 +30,7 @@ if (isset($_GET['delete'])){
         if(mysqli_num_rows($check) > 0) {
             $delete = mysqli_query($conn, "DELETE FROM products WHERE id = $id");
             if($delete){
-                header('Location: admin_page.php?deleted=1');
+                header('Location: admin_page.php');
                 exit;
             } else {
                 $message[] = 'Erro ao deletar produto: ' . mysqli_error($conn);
