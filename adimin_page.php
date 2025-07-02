@@ -21,20 +21,31 @@
             }
         }
     }
+
 if (isset($_GET['delete'])){
     $id = $_GET['delete'];
     if(is_numeric($id)) { // Verifica se o ID é numérico
-        $delete = mysqli_query($conn, "DELETE FROM products WHERE id = $id");
-        if($delete){
-            $message[] = 'Produto deletado com sucesso!';
-            header('Location: admin_page.php');
-            exit;
+        // Verifica se o produto existe antes de deletar
+        $check = mysqli_query($conn, "SELECT * FROM products WHERE id = $id");
+        if(mysqli_num_rows($check) > 0) {
+            $delete = mysqli_query($conn, "DELETE FROM products WHERE id = $id");
+            if($delete){
+                header('Location: admin_page.php?deleted=1');
+                exit;
+            } else {
+                $message[] = 'Erro ao deletar produto: ' . mysqli_error($conn);
+            }
         } else {
-            $message[] = 'Erro ao deletar produto: ' . mysqli_error($conn);
+            $message[] = 'Produto não encontrado!';
         }
     } else {
         $message[] = 'ID inválido!';
     }
+}
+
+// Exibir mensagem de sucesso se o parâmetro deleted estiver presente
+if (isset($_GET['deleted']) && $_GET['deleted'] == 1) {
+    $message[] = 'Produto deletado com sucesso!';
 }
 ?>
 <!DOCTYPE html>
