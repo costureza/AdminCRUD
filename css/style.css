@@ -30,14 +30,31 @@ html{
     padding: 1rem 3rem;
     background: var(--green);
     color: var(--white);
+    text-align: center;
 }
 .btn:hover{
     background: var(--black);
+}
+
+.message{
+    display: block;
+    background: var(--bg-color);
+    padding: 1.5rem 1rem;
+    font-size: 2rem;
+    color: var(--black);
+    margin-bottom: 2rem;
+    text-align: center;
 }
 .container{
     max-width: 1200px;
     padding: 2rem;
     margin: 0 auto;
+}
+.admin-product-form-container.centered{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
 }
 .admin-product-form-container form{
     max-width: 50rem;
@@ -61,15 +78,50 @@ html{
     margin: 1rem 0;
     background: var(--white);
 }
+.product-display{
+    margin: 2rem 0;
+
+}
+.product-display .product-display-table{
+    width: 100%;
+    text-align: center;
+}
+.product-display .product-display-table thead{
+    font-size: 2rem;
+    background: var(--bg-color);
+}
+.product-display .product-display-table th{
+    padding: 1rem;
+    font-size: 2rem;
+
+}
+.product-display .product-display-table td{
+    padding: 1rem;
+    font-size: 2rem;
+    border: var(--border);
+}
+.product-display .product-display-table .btn:first-child{
+    margin-top: 0;
+}
+.product-display .product-display-table .btn:last-child{
+    background: crimson;
+}
+.product-display .product-display-table .btn:last-child:hover{
+    background:var(--black);
+}
 
 @media (max-width:991px){
     html{
         font-size: 55%;
     }
+
 }
-@media (max-width:775px){
-    html{
-        font-size: 55%;
+@media (max-width:768px){
+    .product-display{
+        overflow-y: scroll;
+    }
+    .product-display .product-display-tablel{
+        width: 80rem;
     }
 }
 @media (max-width:450px){
