@@ -22,31 +22,29 @@
         }
     }
 
-if (isset($_GET['delete'])){
-    $id = $_GET['delete'];
-    if(is_numeric($id)) { // Verifica se o ID é numérico
-        // Verifica se o produto existe antes de deletar
-        $check = mysqli_query($conn, "SELECT * FROM products WHERE id = $id");
-        if(mysqli_num_rows($check) > 0) {
-            $delete = mysqli_query($conn, "DELETE FROM products WHERE id = $id");
-            if($delete){
-                header('Location: admin_page.php');
-                exit;
+    if (isset($_GET['delete'])){
+        $id = $_GET['delete'];
+        if(is_numeric($id)) {
+            $check = mysqli_query($conn, "SELECT * FROM products WHERE id = $id");
+            if(mysqli_num_rows($check) > 0) {
+                $delete = mysqli_query($conn, "DELETE FROM products WHERE id = $id");
+                if($delete){
+                    header('Location: adimin_page.php?deleted=1');
+                    exit;
+                } else {
+                    $message[] = 'Erro ao deletar produto: ' . mysqli_error($conn);
+                }
             } else {
-                $message[] = 'Erro ao deletar produto: ' . mysqli_error($conn);
+                $message[] = 'Produto não encontrado!';
             }
         } else {
-            $message[] = 'Produto não encontrado!';
+            $message[] = 'ID inválido!';
         }
-    } else {
-        $message[] = 'ID inválido!';
     }
-}
 
-// Exibir mensagem de sucesso se o parâmetro deleted estiver presente
-if (isset($_GET['deleted']) && $_GET['deleted'] == 1) {
-    $message[] = 'Produto deletado com sucesso!';
-}
+    if (isset($_GET['deleted']) && $_GET['deleted'] == 1) {
+        $message[] = 'Produto deletado com sucesso!';
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -92,16 +90,24 @@ if (isset($_GET['deleted']) && $_GET['deleted'] == 1) {
                     </tr>
                 </thead>
                 <?php
-                while ($row = mysqli_fetch_assoc($select)){?>
+                    $select = mysqli_query($conn, "SELECT * FROM products");
+                    if(mysqli_num_rows($select) > 0){
+                        while($row = mysqli_fetch_assoc($select)){
+                    ?>
                     <tr>
                         <td><img src="./uploaded_img/<?=$row['image'];?>" height="100" alt=""></td>
                         <td><?=$row['name'];?></td>
-                        <td><?=$row['price'];?></td>
+                        <td>R$<?php echo number_format($row['price'], 2, ',', '.'); ?></td>
                         <td><a class="btn" href="admin_update.php?edit=<?=$row['id'];?>"><i class="fas fa-edit"></i>Edit</a>
-                        <a class="btn" href="admin_page.php?delete=<?=$row['id'];?>"><i class="fas fa-trash"></i>Delete</a></td>
+                        <a href="adimin_page.php?delete=<?php echo $row['id']; ?>" class="btn" onclick="return confirm('Tem certeza que deseja deletar este produto?');">Deletar</a></td>
                     </tr>                
                 
-                <?php }; ?>
+                <?php
+                        }
+                    } else {
+                        echo "<tr><td colspan='4'>Nenhum produto cadastrado.</td></tr>";
+                    }
+                ?>
 
             </table>
         </div>
