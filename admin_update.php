@@ -30,7 +30,7 @@ if (isset($_POST['update_product'])) {
     } else {
         $update = "UPDATE products SET name='$product_name', price='$product_price', image='$product_image' WHERE id = $id";
         if(mysqli_query($conn, $update)) {
-            header('Location: admin_page.php?success=Produto atualizado com sucesso!');
+            header('Location:adimin_page.php');
             exit;
         } else {
             $message[] = 'Erro ao atualizar produto: ' . mysqli_error($conn);
@@ -58,9 +58,10 @@ if (isset($_POST['update_product'])) {
     ?>
     <div class="container">
         <div class="admin-product-form-container centered">
-            <?php
+            <?php            
             $row = mysqli_fetch_assoc($select);
             ?>
+            
             <form action="" method="post" enctype="multipart/form-data">
                 <h3>Atualize o produto</h3>
                 <input type="text" placeholder="Nome do produto" name="product_name" class="box" value="<?= htmlspecialchars($row['name']) ?>">
@@ -72,5 +73,6 @@ if (isset($_POST['update_product'])) {
             </form>
         </div>
     </div>
+   
 </body>
 </html>

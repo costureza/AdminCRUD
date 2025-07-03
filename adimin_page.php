@@ -99,7 +99,7 @@
                         <td><?=$row['name'];?></td>
                         <td>R$<?php echo number_format($row['price'], 2, ',', '.'); ?></td>
                         <td><a class="btn" href="admin_update.php?edit=<?=$row['id'];?>"><i class="fas fa-edit"></i>Edit</a>
-                        <a href="adimin_page.php?delete=<?php echo $row['id']; ?>" class="btn" onclick="return confirm('Tem certeza que deseja deletar este produto?');">Deletar</a></td>
+                        <a href="adimin_page.php?delete=<?php echo $row['id']; ?>" class="btn" onclick="return confirm('Tem certeza que deseja deletar este produto?');"><i class="fa-solid fa-trash-can"></i>Deletar</a></td>
                     </tr>                
                 
                 <?php
