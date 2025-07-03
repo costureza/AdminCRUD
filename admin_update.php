@@ -30,9 +30,8 @@ if (isset($_POST['update_product'])) {
     } else {
         $update = "UPDATE products SET name='$product_name', price='$product_price', image='$product_image' WHERE id = $id";
         if(mysqli_query($conn, $update)) {
-            $message[] = 'Produto atualizado com sucesso!';
-            // Atualiza os dados exibidos no formulário
-            $select = mysqli_query($conn, "SELECT * FROM products WHERE id = $id");
+            header('Location: admin_page.php?success=Produto atualizado com sucesso!');
+            exit;
         } else {
             $message[] = 'Erro ao atualizar produto: ' . mysqli_error($conn);
         }
@@ -45,7 +44,7 @@ if (isset($_POST['update_product'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aministrador</title>
+    <title>Administrador</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -69,7 +68,7 @@ if (isset($_POST['update_product'])) {
                 <input type="file" accept="image/png, image/jpeg, image/jpg" name="product_image" class="box">
                 <p>Imagem atual: <?= $row['image'] ?></p>
                 <input type="submit" value="Atualizar" class="btn" name="update_product">
-                <a href="/admin_page.php" class="btn">Voltar</a>
+                
             </form>
         </div>
     </div>
