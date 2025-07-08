@@ -73,6 +73,6 @@ if (isset($_POST['update_product'])) {
             </form>
         </div>
     </div>
-   
+
 </body>
 </html>
